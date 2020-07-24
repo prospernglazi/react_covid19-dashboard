@@ -3,10 +3,10 @@ import CountUp from 'react-countup';
 import { ThemeContext } from '../App';
 
 import { Card, Top, Middle, Bottom } from '../styles/Card';
-import { Text, MutedText, IndicatorText } from '../styles/Text';
-import { CircleSpinner } from '../styles/Loaders'
+import { Text, MutedText } from '../styles/Text';
+import { CircleSpinner } from '../styles/Loaders';
 
-export default function OverviewCard({ amount, type }) {
+export default function OverviewCard({ amount, type, today }) {
   const darkTheme = useContext(ThemeContext);
 
   return (
@@ -29,15 +29,15 @@ export default function OverviewCard({ amount, type }) {
             </Text>
           </Middle>
           <Bottom>
-            <IndicatorText
-              size='.5rem'
-              diff={null > 0 ? 'increase' : 'decrease'}
-              weight='bold'>
-              <span style={{ marginRight: '5px' }}>
-                {null > 0 ? <span>&#9650;</span> : <span>&#x25BC;</span>}
-              </span>
-              {'differenceAmount'} Today
-            </IndicatorText>
+            <Text size='1rem' weight='bold' color='#03a9f4'>
+              <span style={{ marginRight: '5px' }}>&#9650; </span>
+              <CountUp
+                start={0}
+                end={today}
+                duration={0.5}
+                formattingFn={(value) => value.toLocaleString()}
+              />
+            </Text>
           </Bottom>
         </Fragment>
       )}

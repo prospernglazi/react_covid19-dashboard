@@ -8,7 +8,7 @@ import ThemeToggler from '../ThemeToggler';
 import LastUpdate from '../LastUpdate';
 
 export default function Header({
-  lastUpdate,
+  updated,
   toggleTheme,
   onCountrySubmit,
   countries,
@@ -16,7 +16,7 @@ export default function Header({
   return (
     <HeaderContainer d='column' justify='flex-end'>
       <FlexContainer align='flex-end'>
-        <LastUpdate lastUpdate={lastUpdate} />
+        <LastUpdate updated={updated} />
         <CountryPicker
           onCountrySubmit={onCountrySubmit}
           countries={countries}

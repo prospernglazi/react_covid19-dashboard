@@ -4,7 +4,7 @@ import { Header, Main, Footer } from './components/barrel';
 
 import { AppContainer } from './styles/Container';
 import { CircleSpinner } from './styles/Loaders';
-import { fetchData, fetchCountries } from './api/userApi';
+import { fetchData, fetchCountries, fetchContinents } from './api/userApi';
 
 export const ThemeContext = createContext();
 
@@ -13,14 +13,17 @@ export default function App() {
   const [data, setData] = useState();
   const [selectedCountry, setSelectedCountry] = useState('');
   const [countries, setCountries] = useState('');
+  const [continents, setContinents] = useState('');
 
   useEffect(() => {
     (async function getData() {
       try {
         const data = await fetchData(selectedCountry);
         const countriesData = await fetchCountries();
+        const continentsData = await fetchContinents();
         setData(data);
-        setCountries(countriesData.countries);
+        setCountries(countriesData);
+        setContinents(continentsData);
       } catch (error) {
         console.log(error);
       }
@@ -33,7 +36,7 @@ export default function App() {
 
   const handleSubmit = (country) => {
     if (!country.trim() || country === 'Global') setSelectedCountry('');
-    if (countries.findIndex((c) => c.name === country) === -1) return;
+    if (countries.findIndex((c) => c.country === country) === -1) return;
     setSelectedCountry(country.trim());
   };
 
@@ -44,11 +47,11 @@ export default function App() {
       <AppContainer theme={darkTheme ? 'dark' : 'light'}>
         <Header
           toggleTheme={toggleTheme}
-          lastUpdate={data.lastUpdate}
+          updated={data.updated}
           onCountrySubmit={handleSubmit}
           countries={countries}
         />
-        <Main {...data} country={selectedCountry} />
+        <Main {...data} country={selectedCountry} countries={countries}/>
         <Footer />
       </AppContainer>
     </ThemeContext.Provider>

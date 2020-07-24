@@ -1,12 +1,7 @@
 import React from 'react';
 import './style.css';
 
-export default function ListTablePage({
-  country,
-  confirmed,
-  recovered,
-  deaths,
-}) {
+export default function ListTablePage({ countries }) {
   return (
     <table>
       <thead>
@@ -15,15 +10,23 @@ export default function ListTablePage({
           <th>Confirmed</th>
           <th>Recovered</th>
           <th>Deaths</th>
+          <th>Active</th>
+          <th>Critical</th>
+          <th>Tests</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>{country || 'The World'}</td>
-          <td>{confirmed}</td>
-          <td>{recovered}</td>
-          <td>{deaths}</td>
-        </tr>
+        {countries.map((country) => (
+          <tr>
+            <td>{country.country || 'The World'}</td>
+            <td>{country.cases}</td>
+            <td>{country.recovered}</td>
+            <td>{country.deaths}</td>
+            <td>{country.active}</td>
+            <td>{country.critical}</td>
+            <td>{country.tests}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

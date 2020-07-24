@@ -5,7 +5,8 @@ import { LastUpdateContainer, FlexContainer } from '../styles/Container';
 import { Text, MutedText } from '../styles/Text';
 import { Image } from '../styles/Image';
 
-export default function LastUpdate({ lastUpdate }) {
+export default function LastUpdate({ updated }) {
+  console.log(updated)
   return (
     <LastUpdateContainer>
       <Image src={logo}></Image>
@@ -14,7 +15,7 @@ export default function LastUpdate({ lastUpdate }) {
           Covid-19 Dashboard
         </Text>
         <MutedText weight='bold'>
-          Last Updated: {new Date(lastUpdate).toDateString()}
+          Last Updated: {new Date(updated).toDateString()}
         </MutedText>
       </FlexContainer>
     </LastUpdateContainer>

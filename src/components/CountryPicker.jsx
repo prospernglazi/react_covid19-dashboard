@@ -24,8 +24,8 @@ export default function CountryPicker({ onCountrySubmit, countries }) {
       />
       <datalist id='countries'>
         <option value='Global' />
-        {countries.map(({ name }) => (
-          <option key={name} value={name} />
+        {countries.map(({ country }) => (
+          <option key={country} value={country} />
         ))}
       </datalist>
       <Button theme={darkTheme ? 'dark' : 'light'} />
