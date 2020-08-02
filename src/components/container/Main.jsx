@@ -7,7 +7,6 @@ import ListTablePage from '../ListTablePage';
 import DensityPage from '../DensityPage';
 
 export default function Main(props) {
-  console.log(props)
   return (
     <MainContainer>
       <Route

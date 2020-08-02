@@ -57,3 +57,25 @@ export const fetchCountries = async () => {
     console.log(error);
   }
 };
+
+export const fetchHistoricalData = async (country) => {
+  try {
+    if (country) {
+      const {
+        timeline: { cases, recovered, deaths }
+      } = await fetch(`${baseUrl}/historical/${country}?lastdays=30`)
+        .then(handleResponse)
+        .catch(handleError);
+      return { cases, recovered, deaths };
+    } else {
+      const { cases, recovered, deaths } = await fetch(
+        `${baseUrl}/historical/all`,
+      )
+        .then(handleResponse)
+        .catch(handleError);
+      return { cases, recovered, deaths };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

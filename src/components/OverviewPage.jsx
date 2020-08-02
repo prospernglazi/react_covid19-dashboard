@@ -2,6 +2,7 @@ import React from 'react';
 
 import MoreInfoCard from './MoreInfoCard';
 import OverviewCard from './OverviewCard';
+import Chart from './Chart';
 import { CardGrid } from '../styles/Container';
 import { Text } from '../styles/Text';
 
@@ -39,9 +40,12 @@ export default function OverviewPage({
         <MoreInfoCard type='Active' amount={active} />
         <MoreInfoCard type='Critical' amount={critical} />
       </CardGrid>
-      <Text size='2rem' weight='bold'>
-        Graphical Data
-      </Text>
+      <Chart
+        country={country}
+        cases={cases}
+        recovered={recovered}
+        deaths={deaths}
+      />
     </>
   );
 }

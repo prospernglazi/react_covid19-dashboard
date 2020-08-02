@@ -6,7 +6,6 @@ import { Text, MutedText } from '../styles/Text';
 import { Image } from '../styles/Image';
 
 export default function LastUpdate({ updated }) {
-  console.log(updated)
   return (
     <LastUpdateContainer>
       <Image src={logo}></Image>

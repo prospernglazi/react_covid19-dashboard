@@ -17,7 +17,7 @@ export default function ListTablePage({ countries }) {
       </thead>
       <tbody>
         {countries.map((country) => (
-          <tr>
+          <tr key={country.country}>
             <td>{country.country || 'The World'}</td>
             <td>{country.cases}</td>
             <td>{country.recovered}</td>
