@@ -1,41 +1,38 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState } from 'react';
 
-import { Header, Main, Footer } from './components/barrel';
+import { Header, Navigation, Main, Footer } from './components/barrel';
 
 import { AppContainer } from './styles/Container';
 import { CircleSpinner } from './styles/Loaders';
-import { fetchData, fetchCountries, fetchContinents } from './api/userApi';
+
+import useFetch from './services/useFetch';
 
 export const ThemeContext = createContext();
 
 export default function App() {
   const [darkTheme, setDarkTheme] = useState(true);
-  const [data, setData] = useState();
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [countries, setCountries] = useState('');
-  const [continents, setContinents] = useState('');
 
-  useEffect(() => {
-    (async function getData() {
-      try {
-        const data = await fetchData(selectedCountry);
-        const countriesData = await fetchCountries();
-        const continentsData = await fetchContinents();
-        setData(data);
-        setCountries(countriesData);
-        setContinents(continentsData);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [selectedCountry]);
+  const {
+    data: countries,
+    error: countriesError,
+    loading: countriesLoading,
+  } = useFetch('countries');
+
+  const {
+    data: countryData,
+    error: countryError,
+    loading: countryLoading,
+  } = useFetch(`countries/${selectedCountry}`);
+
+  const { data, error, loading } = useFetch(`all`);
 
   const toggleTheme = () => {
     setDarkTheme((prevState) => !prevState);
   };
 
   const handleSubmit = (country) => {
-    if (!country.trim() || country === 'Global') setSelectedCountry('');
+    if (!country.trim() || country === 'World') setSelectedCountry('');
     if (countries.findIndex((c) => c.country === country) === -1) return;
     setSelectedCountry(country.trim());
   };
@@ -44,14 +41,20 @@ export default function App() {
     <CircleSpinner />
   ) : (
     <ThemeContext.Provider value={darkTheme}>
-      <AppContainer theme={darkTheme ? 'dark' : 'light'}>
+      <AppContainer d='column' theme={darkTheme ? 'dark' : 'light'}>
         <Header
           toggleTheme={toggleTheme}
           updated={data.updated}
           onCountrySubmit={handleSubmit}
           countries={countries}
         />
-        <Main {...data} country={selectedCountry} countries={countries}/>
+        <Main
+          worldData={data}
+          countryData={countryData}
+          loading={loading}
+          country={selectedCountry}
+          countries={countries}
+        />
         <Footer />
       </AppContainer>
     </ThemeContext.Provider>

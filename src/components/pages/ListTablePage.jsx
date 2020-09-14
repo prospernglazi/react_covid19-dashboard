@@ -1,9 +1,9 @@
 import React from 'react';
-import './style.css';
+import { Table, TableBody } from "../../styles/Table";
 
 export default function ListTablePage({ countries }) {
   return (
-    <table>
+    <Table>
       <thead>
         <tr>
           <th>Location</th>
@@ -15,10 +15,10 @@ export default function ListTablePage({ countries }) {
           <th>Tests</th>
         </tr>
       </thead>
-      <tbody>
+      <TableBody>
         {countries.map((country) => (
           <tr key={country.country}>
-            <td>{country.country || 'The World'}</td>
+            <td>{country.country}</td>
             <td>{country.cases}</td>
             <td>{country.recovered}</td>
             <td>{country.deaths}</td>
@@ -27,7 +27,7 @@ export default function ListTablePage({ countries }) {
             <td>{country.tests}</td>
           </tr>
         ))}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   );
 }

@@ -36,17 +36,6 @@ export async function fetchData(country) {
   }
 }
 
-export const fetchContinents = async () => {
-  try {
-    const response = await fetch(`${baseUrl}/continents`)
-      .then(handleResponse)
-      .catch(handleError);
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const fetchCountries = async () => {
   try {
     const response = await fetch(`${baseUrl}/countries`)

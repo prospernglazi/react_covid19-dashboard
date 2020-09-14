@@ -23,7 +23,7 @@ export default function CountryPicker({ onCountrySubmit, countries }) {
         theme={darkTheme ? 'dark' : 'light'}
       />
       <datalist id='countries'>
-        <option value='Global' />
+        <option value='World' />
         {countries.map(({ country }) => (
           <option key={country} value={country} />
         ))}

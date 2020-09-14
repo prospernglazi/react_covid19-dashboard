@@ -1,23 +1,23 @@
 import React from 'react';
 
-import MoreInfoCard from './MoreInfoCard';
-import OverviewCard from './OverviewCard';
-import Chart from './Chart';
-import { CardGrid } from '../styles/Container';
-import { Text } from '../styles/Text';
+import MoreInfoCard from '../common/MoreInfoCard';
+import OverviewCard from '../common/OverviewCard';
+import Chart from '../Chart';
+import { CardGrid } from '../../styles/Container';
+import { Text } from '../../styles/Text';
 
-export default function OverviewPage({
-  country,
-  cases,
-  recovered,
-  deaths,
-  todayCases,
-  todayRecovered,
-  todayDeaths,
-  active,
-  critical,
-  tests,
-}) {
+export default function OverviewPage({ country, ...props }) {
+  const {
+    cases,
+    recovered,
+    deaths,
+    todayCases,
+    todayRecovered,
+    todayDeaths,
+    active,
+    critical,
+    tests,
+  } = country ? props.countryData : props.worldData;
   return (
     <>
       <Text size='2rem' weight='bold' color='var(--blue)' bb='2px solid'>
