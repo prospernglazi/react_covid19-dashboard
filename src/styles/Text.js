@@ -10,18 +10,10 @@ export const Text = styled.p`
   margin: ${(props) => props.m};
   padding: ${(props) => props.p};
   color: ${(props) => props.color};
+  border-bottom: ${(props) => props.bb};
 `;
 
 export const MutedText = styled(Text)`
   color: ${({ theme }) => (theme === 'dark' ? '#8b97c6' : '#63687e')};
   transition: all 0.5s ease;
-`;
-
-export const IndicatorText = styled(Text)`
-  color: ${({ diff }) =>
-    diff === 'increase'
-      ? '#1db489 '
-      : diff === 'decrease'
-      ? '#dc414c'
-      : '#03a9f4'};
 `;

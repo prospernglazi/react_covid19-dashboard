@@ -53,7 +53,7 @@ export const MainContainer = styled(FlexContainer)`
 `;
 
 export const CardGrid = styled(GridContainer)`
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 30px;
   margin: 5px 0 20px 0;
 `;

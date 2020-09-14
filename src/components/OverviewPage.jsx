@@ -20,19 +20,30 @@ export default function OverviewPage({
 }) {
   return (
     <>
-      <Text size='2rem' weight='bold' color='var(--blue)'>
+      <Text size='2rem' weight='bold' color='var(--blue)' bb='2px solid'>
         {country ? country : 'The World'}
       </Text>
       <CardGrid>
-        <OverviewCard type='Cases' amount={cases} today={todayCases} />
+        <OverviewCard
+          type='Cases'
+          amount={cases}
+          today={todayCases}
+          color='#2196f3'
+        />
         <OverviewCard
           type='Recovered'
           amount={recovered}
           today={todayRecovered}
+          color='#4caf50'
         />
-        <OverviewCard type='Deaths' amount={deaths} today={todayDeaths} />
+        <OverviewCard
+          type='Deaths'
+          amount={deaths}
+          today={todayDeaths}
+          color='#f44336'
+        />
       </CardGrid>
-      <Text size='2rem' weight='bold'>
+      <Text size='1.5rem' bb='2px solid #fff'>
         Additional Info
       </Text>
       <CardGrid>
